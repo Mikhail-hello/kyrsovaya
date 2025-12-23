@@ -1,0 +1,982 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ru"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="HTML шаблон для барбершопа и парикмахерской">
+    <meta name="author" content="DynamicLayers">
+
+    <title>Барбершоп || HTML шаблон для барбершопа и парикмахерской</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <!-- Elegant Font Icons CSS -->
+    <link rel="stylesheet" href="css/elegant-font-icons.css">
+    <!-- Elegant Line Icons CSS -->
+    <link rel="stylesheet" href="css/elegant-line-icons.css">
+    <!-- Themify Icon CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Barber Icons CSS -->
+    <link rel="stylesheet" href="css/barber-icons.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="css/venobox/venobox.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- OWL-Carousel CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <!-- Slick Nav CSS -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Стили для раздела "Наши барберы" -->
+    <style>
+        /* Квадратные контейнеры для фотографий барберов */
+        .team_member {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0; /* Убираем скругление для квадрата */
+            aspect-ratio: 1/1; /* Делаем квадрат */
+            height: 280px; /* Фиксированная высота */
+            background: #f5f5f5;
+            margin: 0 auto;
+            max-width: 280px; /* Ограничиваем максимальную ширину */
+        }
+        
+        .team_member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Заполняем контейнер без искажений */
+            transition: transform 0.5s ease;
+        }
+        
+        .team_member:hover img {
+            transform: scale(1.05);
+        }
+        
+        .team_member .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .team_member:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        .team_member .overlay h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #c19a6b;
+        }
+        
+        .team_member .overlay p {
+            font-size: 14px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+        
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            .team_member {
+                height: 250px;
+                max-width: 250px;
+            }
+            
+            .team_members li {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .team_member {
+                height: 220px;
+                max-width: 220px;
+            }
+        }
+        
+        /* Стили для карты */
+        .map-section {
+            background: #f9f9f9;
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        #yandex-map {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 10px;
+        }
+        
+        .info-box {
+            padding: 20px;
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .info-box i {
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .info-box h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-box p {
+            color: #666;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        .heading-line {
+            width: 80px;
+            height: 3px;
+            background: #c19a6b;
+            margin: 20px auto 30px;
+        }
+        
+        .map-info {
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            #yandex-map {
+                height: 350px;
+            }
+            
+            .info-box {
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Стили для баллуна на карте */
+        .balloon-title {
+            font-weight: bold;
+            color: #c19a6b;
+            margin-bottom: 5px;
+        }
+        
+        .balloon-address {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .balloon-hours {
+            color: #4CAF50;
+            font-size: 14px;
+        }
+    </style>    
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">Вы используете <strong>устаревший</strong> браузер. Пожалуйста, <a href="http://browsehappy.com/">обновите свой браузер</a> для улучшения работы.</p>
+        <![endif]-->
+
+    <div id='preloader'>
+        <div class='loader'>
+            <img src="img/loading.gif" width="80" alt="Загрузка">
+        </div>
+    </div><!-- Preloader -->
+
+    <header id="header" class="header-section">
+        <div class="container">
+            <nav class="navbar ">
+                <a href="#" class="navbar-brand"><img src="img/logo.png" alt="Барбершоп"></a>
+                <div class="d-flex menu-wrap align-items-center">
+                   <div id="mainmenu" class="mainmenu">
+    <ul class="nav">
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contact">Контакты</a></li>
+    </ul>
+</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header> <!--.header-section -->
+
+    <section class="hero_section d-flex align-items-center">
+        <!-- div class="video_bg" data-property="{videoURL:'3pFH7FQu5so',containment:'self',autoPlay:true, mute:true, startAt:0, opacity:1, showControls:false, ratio:'16/9', quality: 'hd720', showYTLogo: false }"></div> -->
+        <div class="container">
+            <div class="hero_content align-center">
+                <h3>Это не просто стрижка, это опыт.</h3>
+                <h1>Современный Барбершоп <br>Для современных мужчин.</h1>
+                <p>Наш барбершоп — это территория, созданная специально для мужчин, которые ценят<br> премиальное
+                    качество, время и безупречный внешний вид.</p>
+            </div>
+        </div>
+    </section><!-- hero_Section -->
+
+    <section id="about" class="about_section bd-bottom padding">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-6 xs-padding">
+                    <div class="section_heading">
+                        <h3>Модный салон & Спа</h3>
+                        <h2>Улучшите свой уход за волосами <br> с нашими советами и рекомендациями!</h2>
+                        <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье волос
+                            мужчин и мальчиков. Место работы барбера известно как "барбершоп" или "парикмахерская".
+                            Барбершопы также являются местами социального взаимодействия и публичных дискуссий. В
+                            некоторых случаях барбершопы также служат общественными площадками.</p>
+                        <a href="#" class="default_btn">Подробнее о нас</a>
+                    </div>
+                </div>
+                <div class="col-md-6 xs-padding">
+                    <div class="about_video">
+                        <img src="img/post-1.jpg" alt="Изображение">
+                        <div class="play-icon"><a href="#"><i class="ti-control-play"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/. about_section -->
+
+    <section class="book_section padding">
+        <div class="book_bg"></div>
+        <div class="map_pattern"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-6">
+                    <form action="appointment.php" method="post" id="appointment_form"
+                        class="form-horizontal appointment_form">
+                        <div class="book_content">
+                            <h2>Записаться на прием</h2>
+                            <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе <br>и бритье
+                                волос мужчин и мальчиков.</p>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 padding-10">
+                                <input type="text" id="app_name" name="app_name" class="form-control" placeholder="Имя"
+                                    required>
+                            </div>
+                            <div class="col-md-6 padding-10">
+                                <input type="email" id="app_email" name="app_email" class="form-control"
+                                    placeholder="Ваш Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 padding-10">
+                                <input type="text" id="app_phone" name="app_phone" class="form-control"
+                                    placeholder="Ваш телефон" required>
+                            </div>
+                            <div class="col-md-6 padding-10">
+                                <input type="text" id="app_free_time" name="app_free_time" class="form-control"
+                                    placeholder="Удобное время" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 padding-10">
+                                <select class="form-control" id="app_services" name="app_services">
+                                    <option>Услуги</option>
+                                    <option>Укладка волос</option>
+                                    <option>Бритье</option>
+                                    <option>Маска для лица</option>
+                                    <option>Мытье головы</option>
+                                    <option>Уход за бородой</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 padding-10">
+                                <select class="form-control" id="app_barbers" name="app_barbers">
+                                    <option>Выберите барбера</option>
+                                    <option>Алексей Иванов</option>
+                                    <option>Дмитрий Петров</option>
+                                    <option>Михаил Сидоров</option>
+                                    <option>Сергей Кузнецов</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="app_submit" class="default_btn" type="submit">Записаться</button>
+                        <div id="msg-status" class="alert" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section><!--/. book_section -->
+
+    <section id="team" class="team_section bd-bottom padding">
+    <div class="container">
+        <div class="section_heading text-center mb-40 wow fadeInUp" data-wow-delay="300ms">
+            <h3>Модный салон &amp; Спа</h3>
+            <h2>Наша Команда</h2>
+            <div class="heading-line"></div>
+        </div>
+        <ul class="team_members row">
+            <li class="col-lg-3 col-md-6 sm-padding wow fadeInUp" data-wow-delay="200ms">
+                <div class="team_member">
+                    <img src="img/mishaa.jpg" alt="Михаил Перевалов">
+                    <div class="overlay">
+                        <h3>Михаил Перевалов</h3>
+                        <p>Тим Лидер</p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-lg-3 col-md-6 sm-padding wow fadeInUp" data-wow-delay="300ms">
+                <div class="team_member">
+                    <img src="img/denis.jpg" alt="Денис Балабан">
+                    <div class="overlay">
+                        <h3>Денис Балабан</h3>
+                        <p>FrontEnd- разработчик</p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-lg-3 col-md-6 sm-padding wow fadeInUp" data-wow-delay="400ms">
+                <div class="team_member">
+                    <img src="img/Andrey.jpg" alt="Андрей Нейко">
+                    <div class="overlay">
+                        <h3>Андрей Нейко</h3>
+                        <p>FrontEnd- разработчик</p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-lg-3 col-md-6 sm-padding wow fadeInUp" data-wow-delay="500ms">
+                <div class="team_member">
+                    <img src="img/maksim.jpg" alt="Максим Солотинский">
+                    <div class="overlay">
+                        <h3>Максим Солотинский</h3>
+                        <p>Копирайтер</p>
+                    </div>
+                    </div>  
+                </li>
+            </ul><!-- /.team_members -->
+        </div>
+    </section><!-- /.team_section -->
+
+    <section id="reviews" class="testimonial_section padding" 
+         style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('img/fon%20photo.jpg') center/cover no-repeat fixed; color: #fff;">
+    <div class="container">
+        <ul id="testimonial_carousel" class="testimonial_items owl-carousel">
+            <li class="testimonial_item">
+                <p>"Настоящий барбер — это не просто мастер с ножницами, это психолог, стилист и друг.<br> В этом салоне я нашел все три качества в одном месте."</p>
+                <h4 class="text-white">Алексей Петров, Постоянный клиент</h4>
+            </li>
+            <li class="testimonial_item">
+                <p>"Здесь царит особая атмосфера — сочетание классических традиций барбершопа<br> и современных тенденций. Лучшее место для мужского отдыха и ухода за собой."</p>
+                <h4 class="text-white">Дмитрий Соколов, Бизнесмен</h4>
+            </li>
+            <li class="testimonial_item">
+                <p>"Каждый визит сюда — это не просто стрижка, а сеанс релаксации.<br> Мастера внимательны к деталям и всегда знают, что будет смотреться идеально."</p>
+                <h4 class="text-white">Игорь Николаев, Артист</h4>
+            </li>
+        </ul>
+    </div>
+    </section><!-- /.testimonial_section -->
+
+    <section id="services" class="pricing_section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="section_heading text-center mb-40 wow fadeInUp" data-wow-delay="300ms">
+                <h3>Скидка 20% на спа-процедуры</h3>
+                <h2>Наши цены</h2>
+                <div class="heading-line"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 sm-padding">
+                    <div class="price_wrap">
+                        <h3>Укладка волос</h3>
+                        <ul class="price_list">
+                            <li>
+                                <h4>Стрижка</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">800₽</span>
+                            </li>
+                            <li>
+                                <h4>Укладка</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">900₽</span>
+                            </li>
+                            <li>
+                                <h4>Подравнивание</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">1000₽</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 sm-padding">
+                    <div class="price_wrap">
+                        <h3>Бритье</h3>
+                        <ul class="price_list">
+                            <li>
+                                <h4>Чистое бритье</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">800₽</span>
+                            </li>
+                            <li>
+                                <h4>Уход за бородой</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">900₽</span>
+                            </li>
+                            <li>
+                                <h4>Гладкое бритье</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">1000₽</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 sm-padding">
+                    <div class="price_wrap">
+                        <h3>Маски для лица</h3>
+                        <ul class="price_list">
+                            <li>
+                                <h4>Белая чистка лица</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">800₽</span>
+                            </li>
+                            <li>
+                                <h4>Очищение лица</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">900₽</span>
+                            </li>
+                            <li>
+                                <h4>Осветление кожи</h4>
+                                <p>Барбер — это человек, чья профессия заключается в стрижке, укладке, уходе и бритье.
+                                </p>
+                                <span class="price">1000₽</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /.pricing_section -->
+
+
+    <div class="calculator-page-wrapper">
+        <div class="barber-calculator">
+
+            <div class="calculator-header">
+                <h1>Барбер Калькулятор</h1>
+                <p>Рассчитайте стоимость услуг онлайн</p>
+            </div>
+
+            <!-- СТРИЖКА -->
+            <div class="calc-section">
+                <div class="section-title">
+                    <i class="fas fa-cut"></i>
+                    <h2>Стрижка</h2>
+                </div>
+
+                <div class="calc-radio-group">
+                    <div class="calc-radio-options">
+
+                        <label class="calc-radio-option selected">
+                            <input type="radio" name="haircut" value="0" checked>
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Без стрижки</span>
+                            <span class="calc-radio-price">0 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="haircut" value="800">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Мужская стрижка</span>
+                            <span class="calc-radio-price">800 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="haircut" value="900">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Модельная стрижка</span>
+                            <span class="calc-radio-price">900 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="haircut" value="1000">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Стрижка машинкой</span>
+                            <span class="calc-radio-price">1000 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="haircut" value="1200">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Детская стрижка</span>
+                            <span class="calc-radio-price">1200 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="haircut" value="1500">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Креативная стрижка</span>
+                            <span class="calc-radio-price">1500 ₽</span>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- МЫТЬЁ -->
+            <div class="calc-section">
+                <div class="section-title">
+                    <i class="fas fa-shower"></i>
+                    <h2>Мытьё головы</h2>
+                </div>
+
+                <div class="calc-radio-group">
+                    <div class="calc-radio-options">
+                        <label class="calc-radio-option selected">
+                            <input type="radio" name="wash" value="0" checked>
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Без мытья</span>
+                            <span class="calc-radio-price">0 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="wash" value="300">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Стандартное мытьё</span>
+                            <span class="calc-radio-price">300 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="wash" value="500">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Мытьё с кондиционером</span>
+                            <span class="calc-radio-price">500 ₽</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- БОРОДА -->
+            <div class="calc-section">
+                <div class="section-title">
+                    <i class="fas fa-user"></i>
+                    <h2>Корректировка бороды</h2>
+                </div>
+
+                <div class="calc-radio-group">
+                    <div class="calc-radio-options">
+                        <label class="calc-radio-option selected">
+                            <input type="radio" name="beard" value="0" checked>
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Без бороды</span>
+                            <span class="calc-radio-price">0 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="beard" value="400">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Корректировка формы</span>
+                            <span class="calc-radio-price">400 ₽</span>
+                        </label>
+
+                        <label class="calc-radio-option">
+                            <input type="radio" name="beard" value="600">
+                            <div class="calc-radio-custom"></div>
+                            <span class="calc-radio-label">Полное оформление</span>
+                            <span class="calc-radio-price">600 ₽</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-total-section">
+                <div class="calc-total-label">Общая стоимость</div>
+                <div id="totalPrice">0 ₽</div>
+            </div>
+
+            <div class="calc-buttons">
+                <button class="calc-btn calc-btn-reset" id="resetButton">
+                    Сбросить
+                </button>
+                <button class="calc-btn calc-btn-book" id="bookButton">
+                    Записаться
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- СЕКЦИЯ С ЯНДЕКС КАРТОЙ -->
+    <section id="contact" class="map-section padding">
+        <div class="container">
+            <div class="section-heading text-center mb-40">
+                <h2>Мы находимся</h2>
+                <p>Приходите к нам в гости по адресу: г. Донецк, ул. Челюскинцев, д. 163А</p>
+                <div class="heading-line"></div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="map-container">
+                        <div id="yandex-map"></div>
+                        <div class="map-overlay"></div>
+                    </div>
+                    
+                    <div class="map-info text-center mt-30">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <i class="ti-location-pin" style="font-size: 30px; color: #c19a6b;"></i>
+                                    <h4>Адрес</h4>
+                                    <p>г. Донецк, ул. Челюскинцев, д. 163А</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <i class="ti-time" style="font-size: 30px; color: #c19a6b;"></i>
+                                    <h4>Часы работы</h4>
+                                    <p>Пн-Пт: 9:00-21:00<br>Сб-Вс: 10:00-20:00</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <i class="ti-mobile" style="font-size: 30px; color: #c19a6b;"></i>
+                                    <h4>Телефон</h4>
+                                    <p>+7 (856) 337-71-08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="widget_section padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 sm-padding">
+                    <div class="footer_widget">
+                        <img class="mb-15" src="img/logo.png" alt="Бренд">
+                        <p>Наш барбершоп создан для мужчин, которые ценят премиальное качество, время и безупречный
+                            внешний вид.</p>
+                        <ul class="widget_social">
+                            <li><a href="#"><i class="social_facebook"></i></a></li>
+                            <li><a href="#"><i class="social_twitter"></i></a></li>
+                            <li><a href="#"><i class="social_googleplus"></i></a></li>
+                            <li><a href="#"><i class="social_instagram"></i></a></li>
+                            <li><a href="#"><i class="social_linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 sm-padding">
+                    <div class="footer_widget">
+                        <h3>Главный офис</h3>
+                        <p> г. Донецк, ул. Челюскинцев, д. 163А</p>
+                        <p>info-diu@ranepa.ru <br> +7(856)337-71-08</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 sm-padding">
+                    <div class="footer_widget">
+                        <h3>Часы работы</h3>
+                        <ul class="opening_time">
+                            <li>Понедельник - Пятница 09:00 - 21:00</li>
+                            <li>Суббота – Воскресенье: 10:00 – 20:00</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 sm-padding">
+                    <div class="footer_widget">
+                        <h3>Подпишитесь на наши новости</h3>
+                        <div class="subscribe_form">
+                            <form action="#" class="subscribe_form">
+                                <input type="email" name="email" id="subs-email" class="form_input"
+                                    placeholder="Введите email...">
+                                <button type="submit" class="submit">ПОДПИСАТЬСЯ</button>
+                                <div class="clearfix"></div>
+                                <div id="subscribe-result">
+                                    <p class="subscription-success"></p>
+                                    <p class="subscription-error"></p>
+                                </div>
+                            </form>
+                        </div><!-- Subscribe Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /.widget_section -->
+
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 xs-padding">
+                    <div class="copyright">&copy;
+                        <script type="text/javascript"> document.write(new Date().getFullYear())</script> Барбершоп
+                        Разработано DynamicLayers
+                    </div>
+                </div>
+                <div class="col-md-6 xs-padding">
+                    <ul class="footer_social">
+                        <li><a href="#">Заказы</a></li>
+                        <li><a href="#">Условия</a></li>
+                        <li><a href="#">Сообщить о проблеме</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!-- /.footer_section -->
+
+    <a data-scroll href="#header" id="scroll-to-top"><i class="arrow_up"></i></a>
+
+    <!-- jQuery Lib -->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <!-- Imagesloaded JS -->
+    <script src="js/vendor/imagesloaded.pkgd.min.js"></script>
+    <!-- OWL-Carousel JS -->
+    <script src="js/vendor/owl.carousel.min.js"></script>
+    <!-- isotope JS -->
+    <script src="js/vendor/jquery.isotope.v3.0.2.js"></script>
+    <!-- Smooth Scroll JS -->
+    <script src="js/vendor/smooth-scroll.min.js"></script>
+    <!-- venobox JS -->
+    <script src="js/vendor/venobox.min.js"></script>
+    <!-- ajaxchimp JS -->
+    <script src="js/vendor/jquery.ajaxchimp.min.js"></script>
+    <!--Slicknav-->
+    <script src="js/vendor/jquery.slicknav.min.js"></script>
+    <!--Nice Select-->
+    <script src="js/vendor/jquery.nice-select.min.js"></script>
+    <!-- YTPlayer JS -->
+    <script src="js/vendor/jquery.mb.YTPlayer.min.js"></script>
+    <!-- Wow JS -->
+    <script src="js/vendor/wow.min.js"></script>
+    <!-- Contact JS -->
+    <script src="js/contact.js"></script>
+    <!-- Appointment JS -->
+    <script src="js/appointment.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/calculator.js"></script>
+
+    <!-- Яндекс Карты API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ_api&lang=ru_RU" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        // Инициализация Яндекс Карты
+        ymaps.ready(init);
+        
+        function init() {
+            // Центр карты (Донецк)
+            var myMap = new ymaps.Map("yandex-map", {
+                center: [48.0159, 37.8028],
+                zoom: 16,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+            
+            // Создание метки
+            var myPlacemark = new ymaps.Placemark([48.0159, 37.8028], {
+                balloonContentHeader: '<div class="balloon-title">Барбершоп</div>',
+                balloonContentBody: '<div class="balloon-address">г. Донецк, ул. Челюскинцев, д. 163А</div>' +
+                                   '<div class="balloon-hours">Часы работы: Пн-Пт 9:00-21:00, Сб-Вс 10:00-20:00</div>',
+                hintContent: 'Барбершоп'
+            }, {
+                // Опции метки
+                iconLayout: 'default#image',
+                iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconImageSize: [40, 40],
+                iconImageOffset: [-20, -40]
+            });
+            
+            // Добавление метки на карту
+            myMap.geoObjects.add(myPlacemark);
+            
+            // Открываем балун при загрузке
+            myPlacemark.balloon.open();
+            
+            // Адаптация карты для мобильных
+            if (window.innerWidth < 768) {
+                myMap.behaviors.disable('drag');
+            }
+        }
+        
+        // Адаптация карты при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.innerWidth < 768) {
+                if (typeof myMap !== 'undefined') {
+                    myMap.behaviors.disable('drag');
+                }
+            } else {
+                if (typeof myMap !== 'undefined') {
+                    myMap.behaviors.enable('drag');
+                }
+            }
+        });
+    </script>
+
+    <!-- Скрипт для калькулятора -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы калькулятора
+            const haircutOptions = document.querySelectorAll('input[name="haircut"]');
+            const washOptions = document.querySelectorAll('input[name="wash"]');
+            const beardOptions = document.querySelectorAll('input[name="beard"]');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const resetButton = document.getElementById('resetButton');
+            const bookButton = document.getElementById('bookButton');
+            
+            // Функция расчета общей стоимости
+            function calculateTotal() {
+                let total = 0;
+                
+                // Получаем выбранную стрижку
+                haircutOptions.forEach(option => {
+                    if (option.checked) {
+                        total += parseInt(option.value);
+                    }
+                });
+                
+                // Получаем выбранное мытье
+                washOptions.forEach(option => {
+                    if (option.checked) {
+                        total += parseInt(option.value);
+                    }
+                });
+                
+                // Получаем выбранную услугу для бороды
+                beardOptions.forEach(option => {
+                    if (option.checked) {
+                        total += parseInt(option.value);
+                    }
+                });
+                
+                // Обновляем отображение общей стоимости
+                totalPriceElement.textContent = total + ' ₽';
+                
+                return total;
+            }
+            
+            // События для переключателей
+            haircutOptions.forEach(option => {
+                option.addEventListener('change', calculateTotal);
+            });
+            
+            washOptions.forEach(option => {
+                option.addEventListener('change', calculateTotal);
+            });
+            
+            beardOptions.forEach(option => {
+                option.addEventListener('change', calculateTotal);
+            });
+            
+            // Кнопка сброса
+            resetButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Сбрасываем все к первому варианту
+                haircutOptions[0].checked = true;
+                washOptions[0].checked = true;
+                beardOptions[0].checked = true;
+                
+                // Обновляем визуальное состояние
+                document.querySelectorAll('.calc-radio-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                document.querySelectorAll('.calc-radio-option input[value="0"]').forEach(input => {
+                    input.parentElement.classList.add('selected');
+                });
+                
+                // Пересчитываем
+                calculateTotal();
+            });
+            
+            // Кнопка записи
+            bookButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                const total = calculateTotal();
+                
+                if (total > 0) {
+                    // Прокрутка к форме записи
+                    document.querySelector('.book_section').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                    
+                    // Можно добавить уведомление
+                    alert('Вы выбрали услуги на сумму ' + total + ' ₽. Теперь заполните форму записи ниже.');
+                } else {
+                    alert('Пожалуйста, выберите хотя бы одну услугу');
+                }
+            });
+            
+            // Обработка кликов по вариантам для визуального выделения
+            document.querySelectorAll('.calc-radio-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Убираем выделение у всех в этой группе
+                    const groupName = this.querySelector('input').name;
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(input => {
+                        input.parentElement.classList.remove('selected');
+                    });
+                    
+                    // Добавляем выделение текущему
+                    this.classList.add('selected');
+                    
+                    // Активируем радио-кнопку
+                    this.querySelector('input').checked = true;
+                    
+                    // Пересчитываем
+                    calculateTotal();
+                });
+            });
+            
+            // Инициализация при загрузке
+            calculateTotal();
+        });
+    </script>
+    
+</body>
+
+</html>
