@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор услуг</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* СТИЛИ КАЛЬКУЛЯТОРА */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .calculator h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .calculator p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h2 {
+            color: #444;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .radio-option:hover {
+            border-color: #4a90e2;
+        }
+        
+        .radio-option.selected {
+            border-color: #4a90e2;
+            background: #f0f8ff;
+        }
+        
+        .radio-option input {
+            margin-right: 10px;
+        }
+        
+        .price {
+            margin-left: auto;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .total {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .total h3 {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        
+        #totalPrice {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        #resetButton {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        #resetButton:hover {
+            background: #e9ecef;
+        }
+        
+        #bookButton {
+            background: #4a90e2;
+            color: white;
+        }
+        
+        #bookButton:hover {
+            background: #3a7bc8;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML КАЛЬКУЛЯТОРА -->
+    <div class="calculator">
+        <h1><i class="fas fa-cut"></i> Калькулятор услуг</h1>
+        <p>Рассчитайте стоимость онлайн</p>
+        
+        <div class="section">
+            <h2><i class="fas fa-scissors"></i> Стрижка</h2>
+            <select id="haircutSelect">
+                <option value="0">Выберите стрижку</option>
+                <option value="800">Мужская стрижка - 800 ₽</option>
+                <option value="900">Модельная стрижка - 900 ₽</option>
+                <option value="1000">Стрижка машинкой - 1000 ₽</option>
+                <option value="1200">Детская стрижка - 1200 ₽</option>
+                <option value="1500">Креативная стрижка - 1500 ₽</option>
+            </select>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-shower"></i> Мытьё головы</h2>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="wash" value="0" checked>
+                    <span>Без мытья</span>
+                    <span class="price">0 ₽</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="wash" value="300">
+                    <span>Стандартное мытьё</span>
+                    <span class="price">300 ₽</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="wash" value="500">
+                    <span>Мытьё с кондиционером</span>
+                    <span class="price">500 ₽</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-user"></i> Корректировка бороды</h2>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="beard" value="0" checked>
+                    <span>Без бороды</span>
+                    <span class="price">0 ₽</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="beard" value="400">
+                    <span>Корректировка формы</span>
+                    <span class="price">400 ₽</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="beard" value="600">
+                    <span>Полное оформление</span>
+                    <span class="price">600 ₽</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="total">
+            <h3>Общая стоимость</h3>
+            <div id="totalPrice">0 ₽</div>
+        </div>
+        
+        <div class="buttons">
+            <button id="resetButton">
+                <i class="fas fa-redo"></i> Сбросить
+            </button>
+            <button id="bookButton">
+                <i class="fas fa-calendar-check"></i> Записаться
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ПРОСТОЙ JAVASCRIPT КОД
+        console.log("Калькулятор запускается...");
+        
+        // 1. Цены
+        let haircutPrice = 0;
+        let washPrice = 0;
+        let beardPrice = 0;
+        
+        // 2. Найти все элементы
+        const haircutSelect = document.getElementById('haircutSelect');
+        const washRadios = document.querySelectorAll('input[name="wash"]');
+        const beardRadios = document.querySelectorAll('input[name="beard"]');
+        const totalElement = document.getElementById('totalPrice');
+        const resetButton = document.getElementById('resetButton');
+        const bookButton = document.getElementById('bookButton');
+        
+        console.log("Элементы найдены:", {
+            haircutSelect: !!haircutSelect,
+            washRadios: washRadios.length,
+            beardRadios: beardRadios.length,
+            totalElement: !!totalElement,
+            resetButton: !!resetButton,
+            bookButton: !!bookButton
+        });
+        
+        // 3. Функция обновления суммы
+        function updateTotal() {
+            const total = haircutPrice + washPrice + beardPrice;
+            totalElement.textContent = total + ' ₽';
+            console.log("Сумма обновлена:", total, "₽");
+        }
+        
+        // 4. Функция выделения радиокнопок
+        function updateRadioStyles() {
+            // Обновляем стили для мытья
+            washRadios.forEach(radio => {
+                const label = radio.closest('.radio-option');
+                if (radio.checked) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+            
+            // Обновляем стили для бороды
+            beardRadios.forEach(radio => {
+                const label = radio.closest('.radio-option');
+                if (radio.checked) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        }
+        
+        // 5. Слушатель для стрижки
+        if (haircutSelect) {
+            haircutSelect.addEventListener('change', function() {
+                haircutPrice = parseInt(this.value) || 0;
+                console.log("Стрижка выбрана:", haircutPrice, "₽");
+                updateTotal();
+            });
+        } else {
+            console.error("ОШИБКА: Элемент haircutSelect не найден!");
+        }
+        
+        // 6. Слушатели для мытья
+        washRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                washPrice = parseInt(this.value);
+                console.log("Мытьё выбрано:", washPrice, "₽");
+                updateRadioStyles();
+                updateTotal();
+            });
+        });
+        
+        // 7. Слушатели для бороды
+        beardRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                beardPrice = parseInt(this.value);
+                console.log("Борода выбрана:", beardPrice, "₽");
+                updateRadioStyles();
+                updateTotal();
+            });
+        });
+        
+        // 8. Кнопка сброса
+        if (resetButton) {
+            resetButton.addEventListener('click', function() {
+                console.log("Сброс всего...");
+                
+                // Сброс стрижки
+                if (haircutSelect) {
+                    haircutSelect.selectedIndex = 0;
+                    haircutPrice = 0;
+                }
+                
+                // Сброс мытья
+                washRadios[0].checked = true;
+                washPrice = 0;
+                
+                // Сброс бороды
+                beardRadios[0].checked = true;
+                beardPrice = 0;
+                
+                // Обновление
+                updateRadioStyles();
+                updateTotal();
+                
+                alert("✅ Всё сброшено!");
+            });
+        }
+        
+        // 9. Кнопка записи
+        if (bookButton) {
+            bookButton.addEventListener('click', function() {
+                const total = haircutPrice + washPrice + beardPrice;
+                if (total === 0) {
+                    alert("❌ Сначала выберите услуги!");
+                } else {
+                    const message = `✅ Запись оформлена!\n\n` +
+                                   `💰 Стоимость: ${total} ₽\n\n` +
+                                   `📞 С вами свяжутся для уточнения времени.`;
+                    alert(message);
+                }
+            });
+        }
+        
+        // 10. Инициализация
+        window.addEventListener('load', function() {
+            console.log("Страница загружена!");
+            updateRadioStyles();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>
